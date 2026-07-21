@@ -1,0 +1,9 @@
+res://scripts/combat/arrow.gd
+res://scripts/systems/battle_manager.gd
+res://scripts/systems/wave_spawner.gd
+res://scripts/units/soldier.gd
+res://scripts/units/unit.gd
+res://scripts/autoload/game_state.gd
+res://scripts/units/orc.gd
+res://resources/unit_data/orc_grunt.tres
+res://resources/unit_data/soldier_data.tres

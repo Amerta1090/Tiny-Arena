@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/upgrade_data/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"skill_poison"
+display_name = "Poison Tip"
+description = "Attacks deal 3 DoT for 3 seconds"
+is_skill = true
+required_wave = 15
+cost_base = 400
+cost_multiplier = 2.0
+stat_key = ""
+effect_value = 0.0
+max_level = 1
+skill_id = &"poison_tip"
+skill_description = "Attacks deal 3 damage/second for 3 seconds"

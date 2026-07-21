@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://resources/unit_data/unit_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/soldier/Soldier_Idle.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/soldier/Soldier_Walk.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/soldier/Soldier_Attack01.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/soldier/Soldier_Attack02.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/soldier/Soldier_Attack03.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/soldier/Soldier_Hurt.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/soldier/Soldier_Death.png" id="8"]
+
+[resource]
+script = ExtResource("1")
+id = &"soldier"
+display_name = "Soldier"
+max_hp = 100
+attack = 15
+defense = 5
+attack_speed = 1.0
+move_speed = 0.0
+attack_range = 250.0
+is_ranged = true
+gold_reward = 0
+xp_reward = 0
+idle_sheet = ExtResource("2")
+walk_sheet = ExtResource("3")
+attack_sheet = ExtResource("5")
+attack2_sheet = ExtResource("4")
+attack3_sheet = ExtResource("6")
+hurt_sheet = ExtResource("7")
+death_sheet = ExtResource("8")
+frame_width = 100
+frame_height = 100
+idle_frames = 6
+walk_frames = 8
+attack_frames = 6
+attack2_frames = 6
+attack3_frames = 9
+hurt_frames = 4
+death_frames = 4
+animation_speed = 8.0
+aggro_range = 300.0
+spawn_delay = 0.0

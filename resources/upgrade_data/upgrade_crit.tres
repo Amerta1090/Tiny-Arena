@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/upgrade_data/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"upgrade_crit"
+display_name = "Precision"
+description = "+3% Critical Chance per level"
+is_skill = false
+required_wave = 0
+cost_base = 60
+cost_multiplier = 1.5
+stat_key = "crit_chance"
+effect_value = 0.03
+max_level = 10

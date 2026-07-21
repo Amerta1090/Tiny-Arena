@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/units/soldier.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/unit_data/soldier_data.tres" id="2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_soldier"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_soldier"]
+size = Vector2(40, 80)
+
+[node name="Soldier" type="CharacterBody2D" groups=["player"]]
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("1")
+unit_data = ExtResource("2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -20)
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_soldier")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_soldier")
+
+[node name="HPBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = -65.0
+offset_right = 25.0
+offset_bottom = -58.0
+show_percentage = false

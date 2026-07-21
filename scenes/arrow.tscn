@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/arrow/Arrow01(32x32).png" id="1"]
+[ext_resource type="Script" path="res://scripts/combat/arrow.gd" id="2"]
+
+[node name="Arrow" type="Node2D"]
+script = ExtResource("2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1")

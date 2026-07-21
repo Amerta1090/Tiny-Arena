@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/upgrade_data/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"skill_pierce"
+display_name = "Pierce Arrow"
+description = "Arrows pierce through 1 additional enemy"
+is_skill = true
+required_wave = 5
+cost_base = 200
+cost_multiplier = 2.0
+stat_key = ""
+effect_value = 0.0
+max_level = 1
+skill_id = &"pierce_arrow"
+skill_description = "Arrows pierce through 1 additional enemy"
