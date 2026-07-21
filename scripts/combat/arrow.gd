@@ -16,8 +16,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if target_unit and is_instance_valid(target_unit) and not target_unit.is_dead:
-		var target_pos: Vector2 = target_unit.global_position + Vector2(0, -50)
-		direction = (target_pos - global_position).normalized()
+		direction = (target_unit.global_position - global_position).normalized()
 		rotation = direction.angle()
 
 	position += direction * speed * delta
@@ -33,8 +32,7 @@ func _check_enemy_hits() -> void:
 	var enemies: Array[Node] = get_tree().get_nodes_in_group("enemies")
 	for enemy_node in enemies:
 		if enemy_node is Unit and not enemy_node.is_dead and enemy_node not in hits:
-			var enemy_center: Vector2 = enemy_node.global_position + Vector2(0, -50)
-			var dist: float = global_position.distance_to(enemy_center)
+			var dist: float = global_position.distance_to(enemy_node.global_position)
 			if dist < 20.0:
 				hits.append(enemy_node)
 				enemy_node.take_damage(damage)
