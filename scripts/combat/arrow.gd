@@ -16,7 +16,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if target_unit and is_instance_valid(target_unit) and not target_unit.is_dead:
-		direction = (target_unit.global_position - global_position).normalized()
+		var target_pos: Vector2 = target_unit.global_position + Vector2(0, -50)
+		direction = (target_pos - global_position).normalized()
 		rotation = direction.angle()
 
 	position += direction * speed * delta
