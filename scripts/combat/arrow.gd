@@ -33,7 +33,7 @@ func _check_enemy_hits() -> void:
 	for enemy_node in enemies:
 		if enemy_node is Unit and not enemy_node.is_dead and enemy_node not in hits:
 			var dist: float = global_position.distance_to(enemy_node.global_position)
-			if dist < 40.0:
+			if dist < 20.0:
 				hits.append(enemy_node)
 				enemy_node.take_damage(damage)
 				if apply_poison:
