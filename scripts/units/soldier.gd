@@ -65,7 +65,7 @@ func _fire_arrow() -> void:
 		return
 	var arrow: Node2D = arrow_scene.instantiate()
 	arrow.global_position = global_position + Vector2(20, -20)
-	var dir: Vector2 = (target.global_position - global_position).normalized()
+	var dir: Vector2 = (target.global_position + Vector2(0, -20) - global_position).normalized()
 	arrow.direction = dir
 	arrow.damage = get_attack_damage()
 	arrow.pierce_count = pierce_count
