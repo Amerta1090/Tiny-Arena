@@ -33,7 +33,8 @@ func _check_enemy_hits() -> void:
 	var enemies: Array[Node] = get_tree().get_nodes_in_group("enemies")
 	for enemy_node in enemies:
 		if enemy_node is Unit and not enemy_node.is_dead and enemy_node not in hits:
-			var dist: float = global_position.distance_to(enemy_node.global_position)
+			var enemy_center: Vector2 = enemy_node.global_position + Vector2(0, -50)
+			var dist: float = global_position.distance_to(enemy_center)
 			if dist < 20.0:
 				hits.append(enemy_node)
 				enemy_node.take_damage(damage)
