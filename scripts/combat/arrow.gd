@@ -37,6 +37,7 @@ func _check_enemy_hits() -> void:
 			if dist < 20.0:
 				hits.append(enemy_node)
 				enemy_node.take_damage(damage)
+				AudioManager.play_hit()
 				if apply_poison:
 					_apply_poison_effect(enemy_node)
 				if pierce_count <= 0:

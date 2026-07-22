@@ -151,6 +151,7 @@ func die() -> void:
 	is_dead = true
 	current_state = State.DEATH
 	target = null
+	AudioManager.play_enemy_death()
 	sprite.play(&"death")
 	await sprite.animation_finished
 	died.emit(self)

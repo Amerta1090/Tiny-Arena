@@ -73,7 +73,6 @@ func _on_orc_died(unit: Unit) -> void:
 	if unit.unit_data:
 		GameState.add_gold(unit.unit_data.gold_reward)
 		_show_gold_number(unit.unit_data.gold_reward)
-	AudioManager.play_enemy_death()
 
 func _show_gold_number(amount: int) -> void:
 	var scene: Node = get_tree().current_scene
