@@ -11,6 +11,7 @@ var all_upgrades: Array[UpgradeData] = []
 var shop_visible: bool = false
 
 func _ready() -> void:
+	AudioManager.play_music(AudioManager.music_battle)
 	battle_manager = $BattleManager
 	wave_spawner = $WaveSpawner
 	battle_manager.battle_won.connect(_on_battle_won)
@@ -44,6 +45,7 @@ func _load_upgrades() -> void:
 	]
 
 func _open_shop() -> void:
+	AudioManager.play_music(AudioManager.music_shop)
 	shop_visible = true
 	_build_shop_ui()
 
@@ -128,6 +130,15 @@ func _build_shop_ui() -> void:
 			continue
 
 		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 6)
+
+		if upgrade.icon:
+			var icon_rect := TextureRect.new()
+			icon_rect.texture = upgrade.icon
+			icon_rect.custom_minimum_size = Vector2(16, 16)
+			icon_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+			icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			row.add_child(icon_rect)
 
 		var name_label := Label.new()
 		name_label.text = upgrade.display_name
@@ -188,4 +199,5 @@ func _on_upgrade_pressed(upgrade: UpgradeData, gold_label: Label) -> void:
 
 func _on_next_wave_pressed() -> void:
 	AudioManager.play_ui_click()
+	AudioManager.play_music(AudioManager.music_battle)
 	get_tree().change_scene_to_file("res://scenes/battle.tscn")

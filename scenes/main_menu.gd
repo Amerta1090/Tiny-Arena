@@ -5,6 +5,7 @@ extends Control
 @onready var quit_button: Button = %QuitButton
 
 func _ready() -> void:
+	AudioManager.play_music(AudioManager.music_menu)
 	start_button.pressed.connect(_on_start_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)

@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://resources/upgrade_data/upgrade_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/icons/pierce.png" id="2"]
 
 [resource]
 script = ExtResource("1")
 id = &"skill_pierce"
 display_name = "Pierce Arrow"
 description = "Arrows pierce through 1 additional enemy"
+icon = ExtResource("2")
 is_skill = true
 required_wave = 5
 cost_base = 200
