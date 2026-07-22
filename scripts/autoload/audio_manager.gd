@@ -34,13 +34,13 @@ func play_ui_click() -> void:
 	play_sfx(sfx_ui_click, -6.0)
 
 func play_hit() -> void:
-	play_sfx(sfx_hit, 2.0)
+	play_sfx(sfx_hit, -10.0)
 
 func play_arrow_shoot() -> void:
 	play_sfx(sfx_arrow_shoot, -4.0)
 
 func play_enemy_death() -> void:
-	play_sfx(sfx_enemy_death, -14.0)
+	play_sfx(sfx_enemy_death, -20.0)
 
 func play_wave_complete() -> void:
 	play_sfx(sfx_wave_complete, 4.0)
