@@ -6,6 +6,13 @@ var sfx_volume: float = 1.0
 var _sfx_players: Array[AudioStreamPlayer] = []
 const MAX_SFX_PLAYERS: int = 8
 
+var sfx_ui_click: AudioStream = preload("res://assets/audio/sfx/ui_click.ogg")
+var sfx_hit: AudioStream = preload("res://assets/audio/sfx/hit.ogg")
+var sfx_arrow_shoot: AudioStream = preload("res://assets/audio/sfx/arrow_shoot.ogg")
+var sfx_enemy_death: AudioStream = preload("res://assets/audio/sfx/enemy_death.ogg")
+var sfx_wave_complete: AudioStream = preload("res://assets/audio/sfx/wave_complete.ogg")
+var sfx_purchase: AudioStream = preload("res://assets/audio/sfx/purchase.ogg")
+
 func _ready() -> void:
 	for i in MAX_SFX_PLAYERS:
 		var player := AudioStreamPlayer.new()
@@ -24,19 +31,19 @@ func play_sfx(stream: AudioStream, volume_db: float = 0.0) -> void:
 			return
 
 func play_ui_click() -> void:
-	pass
+	play_sfx(sfx_ui_click, -6.0)
 
 func play_hit() -> void:
-	pass
+	play_sfx(sfx_hit)
 
 func play_arrow_shoot() -> void:
-	pass
+	play_sfx(sfx_arrow_shoot, -4.0)
 
 func play_enemy_death() -> void:
-	pass
+	play_sfx(sfx_enemy_death)
 
 func play_wave_complete() -> void:
-	pass
+	play_sfx(sfx_wave_complete, -3.0)
 
 func play_purchase() -> void:
-	pass
+	play_sfx(sfx_purchase, -3.0)

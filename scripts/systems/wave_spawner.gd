@@ -45,7 +45,7 @@ func _spawn_enemy(unit_id: StringName) -> Unit:
 			enemy.unit_data = load("res://resources/unit_data/orc_grunt.tres")
 	enemy.scale_stats(GameState.current_wave)
 	var spawn_x: float = randf_range(520, 620)
-	var spawn_y: float = 240
+	var spawn_y: float = 288
 	enemy.global_position = Vector2(spawn_x, spawn_y)
 	get_tree().current_scene.add_child(enemy)
 	return enemy

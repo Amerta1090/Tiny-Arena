@@ -12,14 +12,17 @@ func _ready() -> void:
 	continue_button.disabled = not GameState.has_save()
 
 func _on_start_pressed() -> void:
+	AudioManager.play_ui_click()
 	GameState.reset_game()
 	GameState.save_game()
 	get_tree().change_scene_to_file("res://scenes/battle.tscn")
 
 func _on_continue_pressed() -> void:
+	AudioManager.play_ui_click()
 	GameState.load_game()
 	get_tree().change_scene_to_file("res://scenes/battle.tscn")
 
 func _on_quit_pressed() -> void:
+	AudioManager.play_ui_click()
 	GameState.save_game()
 	get_tree().quit()

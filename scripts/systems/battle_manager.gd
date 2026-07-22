@@ -33,7 +33,7 @@ func _on_all_spawned() -> void:
 
 func _spawn_soldier() -> void:
 	soldier = soldier_scene.instantiate()
-	soldier.global_position = Vector2(80, 240)
+	soldier.global_position = Vector2(80, 288)
 	soldier.died.connect(_on_soldier_died)
 	get_tree().current_scene.add_child(soldier)
 

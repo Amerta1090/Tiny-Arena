@@ -187,4 +187,5 @@ func _on_upgrade_pressed(upgrade: UpgradeData, gold_label: Label) -> void:
 		_open_shop()
 
 func _on_next_wave_pressed() -> void:
+	AudioManager.play_ui_click()
 	get_tree().change_scene_to_file("res://scenes/battle.tscn")
