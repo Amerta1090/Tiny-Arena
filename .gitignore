@@ -6,6 +6,9 @@ export_presets.cfg
 # Android build
 android/
 
+# Build output
+builds/
+
 # OS
 .DS_Store
 Thumbs.db
