@@ -24,6 +24,9 @@ config/icon="res://icon.svg"
 
 GameState="*res://scripts/autoload/game_state.gd"
 AudioManager="*res://scripts/autoload/audio_manager.gd"
+Transition="*res://scripts/autoload/transition.gd"
+CameraEffects="*res://scripts/autoload/camera_effects.gd"
+ButtonEffects="*res://scripts/autoload/button_effects.gd"
 
 [display]
 
@@ -51,3 +54,4 @@ skip_wave={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

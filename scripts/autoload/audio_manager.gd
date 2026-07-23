@@ -1,7 +1,7 @@
 extends Node
 
-var music_volume: float = 0.8
-var sfx_volume: float = 1.0
+var music_volume: float = 0.25
+var sfx_volume: float = 0.75
 
 var _sfx_players: Array[AudioStreamPlayer] = []
 const MAX_SFX_PLAYERS: int = 8
@@ -25,19 +25,33 @@ var _current_track: AudioStream = null
 
 const FADE_DURATION: float = 0.5
 
+func _setup_buses() -> void:
+	if AudioServer.get_bus_index("Music") == -1:
+		var idx := AudioServer.bus_count
+		AudioServer.add_bus(idx)
+		AudioServer.set_bus_name(idx, "Music")
+		AudioServer.set_bus_send(idx, "Master")
+	if AudioServer.get_bus_index("SFX") == -1:
+		var idx := AudioServer.bus_count
+		AudioServer.add_bus(idx)
+		AudioServer.set_bus_name(idx, "SFX")
+		AudioServer.set_bus_send(idx, "Master")
+
 func _ready() -> void:
+	_setup_buses()
+
 	for i in MAX_SFX_PLAYERS:
 		var player := AudioStreamPlayer.new()
-		player.bus = "Master"
+		player.bus = "SFX"
 		add_child(player)
 		_sfx_players.append(player)
 
 	_music_a = AudioStreamPlayer.new()
-	_music_a.bus = "Master"
+	_music_a.bus = "Music"
 	add_child(_music_a)
 
 	_music_b = AudioStreamPlayer.new()
-	_music_b.bus = "Master"
+	_music_b.bus = "Music"
 	add_child(_music_b)
 
 	_active_music = _music_a
@@ -91,13 +105,13 @@ func play_ui_click() -> void:
 	play_sfx(sfx_ui_click, -6.0)
 
 func play_hit() -> void:
-	play_sfx(sfx_hit, -10.0)
+	play_sfx(sfx_hit, -6.0)
 
 func play_arrow_shoot() -> void:
 	play_sfx(sfx_arrow_shoot, -4.0)
 
 func play_enemy_death() -> void:
-	play_sfx(sfx_enemy_death, -20.0)
+	play_sfx(sfx_enemy_death, -6.0)
 
 func play_wave_complete() -> void:
 	play_sfx(sfx_wave_complete, 4.0)

@@ -1,6 +1,7 @@
 # Godot
 .godot/
 *.import
+*.uid
 export_presets.cfg
 
 # Android build
@@ -8,6 +9,10 @@ android/
 
 # Build output
 builds/
+
+# Signing
+*.keystore
+*.jks
 
 # OS
 .DS_Store
