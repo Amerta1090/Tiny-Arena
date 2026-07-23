@@ -2,17 +2,6 @@ extends CanvasLayer
 
 @export var background_folder: String = "res://assets/background/nature_1/"
 
-var layer_defs: Array[Dictionary] = [
-	{"file": "sky.png", "z_index": 0},
-	{"file": "clouds.png", "z_index": 1, "is_clouds": true},
-	{"file": "mountains_far.png", "z_index": 2},
-	{"file": "mountains_near.png", "z_index": 3},
-	{"file": "trees_back.png", "z_index": 4},
-	{"file": "trees_front.png", "z_index": 5},
-	{"file": "ground.png", "z_index": 6},
-	{"file": "grass.png", "z_index": 7},
-]
-
 var cloud_a: Sprite2D
 var cloud_b: Sprite2D
 var viewport_size: Vector2
@@ -26,8 +15,17 @@ func _ready() -> void:
 	)
 	_build_layers()
 
+func set_background(folder: String) -> void:
+	background_folder = folder
+	for child in get_children():
+		child.queue_free()
+	cloud_a = null
+	cloud_b = null
+	_build_layers()
+
 func _build_layers() -> void:
-	for ld in layer_defs:
+	var layers: Array[Dictionary] = _detect_layers()
+	for ld in layers:
 		var tex: Texture2D = load(background_folder + ld["file"])
 		if not tex:
 			push_warning("ParallaxBG: failed to load " + ld["file"])
@@ -43,6 +41,51 @@ func _build_layers() -> void:
 			var ts: Vector2 = tex.get_size()
 			sprite.scale = Vector2(viewport_size.x / ts.x, viewport_size.y / ts.y)
 			add_child(sprite)
+
+func _detect_layers() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var dir: DirAccess = DirAccess.open(background_folder)
+	if not dir:
+		push_warning("ParallaxBG: cannot open folder " + background_folder)
+		return result
+
+	dir.list_dir_begin()
+	var file_name: String = dir.get_next()
+	while file_name != "":
+		if file_name.ends_with(".png") and not file_name.begins_with("orig"):
+			var lower: String = file_name.to_lower()
+			if "kosongan" in lower:
+				file_name = dir.get_next()
+				continue
+
+			var z_idx: int = _extract_layer_number(file_name)
+			if z_idx < 0:
+				file_name = dir.get_next()
+				continue
+
+			var is_clouds: bool = "clouds" in lower or "awan" in lower
+			result.append({"file": file_name, "z_index": z_idx, "is_clouds": is_clouds})
+		file_name = dir.get_next()
+	dir.list_dir_end()
+
+	result.sort_custom(func(a, b): return a["z_index"] < b["z_index"])
+	return result
+
+func _extract_layer_number(filename: String) -> int:
+	var lower: String = filename.to_lower()
+	var idx: int = lower.find("layer ")
+	if idx < 0:
+		return -1
+	var after_layer: String = lower.substr(idx + 6)
+	var num_str: String = ""
+	for c in after_layer:
+		if c >= "0" and c <= "9":
+			num_str += c
+		else:
+			break
+	if num_str.is_empty():
+		return -1
+	return num_str.to_int()
 
 func _create_cloud_pair(tex: Texture2D, z_idx: int) -> void:
 	var ts: Vector2 = tex.get_size()

@@ -10,6 +10,13 @@ var current_wave: int = 0
 var all_upgrades: Array[UpgradeData] = []
 var shop_visible: bool = false
 
+const BG_FOLDERS: Array[String] = [
+	"res://assets/background/nature_2/",
+	"res://assets/background/nature_3/",
+	"res://assets/background/nature_4/",
+	"res://assets/background/nature_5/",
+]
+
 func _ready() -> void:
 	AudioManager.play_music(AudioManager.music_battle)
 	battle_manager = $BattleManager
@@ -18,6 +25,13 @@ func _ready() -> void:
 	battle_manager.battle_lost.connect(_on_battle_lost)
 	start_timer.timeout.connect(_on_start_timer)
 	_load_upgrades()
+	_randomize_background()
+
+func _randomize_background() -> void:
+	var bg_layer: CanvasLayer = $BackgroundLayer
+	if bg_layer and bg_layer.has_method("set_background"):
+		var chosen: String = BG_FOLDERS.pick_random()
+		bg_layer.set_background(chosen)
 
 func _on_start_timer() -> void:
 	battle_manager.start_battle()
