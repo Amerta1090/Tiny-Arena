@@ -33,8 +33,14 @@ func _randomize_background() -> void:
 		var chosen: String = BG_FOLDERS.pick_random()
 		bg_layer.set_background(chosen)
 
+var wave_banner_script: Script = preload("res://scripts/ui/wave_banner.gd")
+
 func _on_start_timer() -> void:
 	battle_manager.start_battle()
+	var banner := CanvasLayer.new()
+	banner.set_script(wave_banner_script)
+	add_child(banner)
+	banner.show_wave_banner(GameState.current_wave)
 
 func _on_battle_won() -> void:
 	is_battle_over = true
